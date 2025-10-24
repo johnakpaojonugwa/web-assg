@@ -1,7 +1,9 @@
 "use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { LiaSpinnerSolid } from "react-icons/lia";
 
 function Page() {
   const [products, setProducts] = useState([]);
@@ -15,7 +17,7 @@ function Page() {
         setProducts(data.slice(0, 24));
         console.log("Product data:", data.slice(0, 24));
       } catch (error) {
-        console.error("Error fetching products:", error);
+        console.log("Error fetching products:", error);
       } finally {
         setLoading(false);
       }
@@ -23,7 +25,13 @@ function Page() {
     fetchData();
   }, []);
 
-  if (loading) return <div className="text-center py-10">Loading...</div>;
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center py-20">
+        <LiaSpinnerSolid size={40} className="animate-spin text-blue-500" />
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full min-h-screen">

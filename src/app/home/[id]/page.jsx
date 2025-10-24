@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useApp } from "@/context/AppContext";
+import { LiaSpinnerSolid } from "react-icons/lia";
+
 
 export default function Page() {
   const { id } = useParams();
@@ -32,14 +34,18 @@ export default function Page() {
   }, [id]);
 
   if (loading) {
-    return <div className="text-center py-10">Loading...</div>;
+    return (
+      <div className="flex justify-center items-center py-20">
+        <LiaSpinnerSolid size={40} className="animate-spin text-blue-500" />
+      </div>
+    );
   }
 
   if (!product) {
     return (
-      <div className="w-11/12 mx-auto py-10 text-center">
+      <div className="w-11/12 mx-auto py-20 text-center">
         <h2>Product not found</h2>
-        <Link href="/home" className="text-blue-500 underline">
+        <Link href="/home" className="text-blue-500 underline mt-3 inline-block">
           Go back to our product page
         </Link>
       </div>
@@ -65,13 +71,14 @@ export default function Page() {
           width={500}
           height={500}
           unoptimized
-          className="w-full object-cover rounded"
+          className="w-full object-cover rounded shadow"
         />
       </div>
 
-      <div className="p-10 space-y-4">
+      <div className="p-10 space-y-5">
         <h1 className="text-2xl font-semibold">{product.title}</h1>
-        <div className="items-center gap-10 flex ">
+
+        <div className="items-center gap-4 flex ">
           <p className="font-bold text-lg text-gray-900">
             USD {product.price}.00
           </p>
@@ -85,6 +92,7 @@ export default function Page() {
             Camel
           </span>
         </p>
+        
         <div className="flex gap-3 mt-2">
           {product.images?.slice(0, 3).map((img, i) => (
             <Image

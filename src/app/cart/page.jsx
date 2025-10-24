@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useApp } from "@/context/AppContext";
 import { FaTimes } from "react-icons/fa";
+import Link from "next/link";
 
 
 export default function CartPage() {
@@ -16,12 +17,12 @@ export default function CartPage() {
         {cart.length === 0 ? (
           <div className="text-center py-16">
             <p className="text-gray-500 text-lg mb-3">Your cart is empty 🛒</p>
-            <a
+            <Link
               href="/"
               className="inline-block mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md transition"
             >
               Continue Shopping
-            </a>
+            </Link>
           </div>
         ) : (
           <>
@@ -56,14 +57,14 @@ export default function CartPage() {
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => decrement(item.id)}
-                            className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300 cursor-pointer"
+                            className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300 cursor-pointer text-gray-800"
                           >
                             -
                           </button>
-                          <span className="w-8 text-center font-medium">{item.qty}</span>
+                          <span className="w-8 text-center font-medium text-gray-800">{item.qty}</span>
                           <button
                             onClick={() => addToCart(item)}
-                            className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300 cursor-pointer"
+                            className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300 cursor-pointer text-gray-800"
                           >
                             +
                           </button>
